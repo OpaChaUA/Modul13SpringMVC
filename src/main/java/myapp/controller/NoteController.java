@@ -20,7 +20,7 @@ public class NoteController {
         result.addObject("notes", noteService.allNote());
         return result;
     }
-    @PostMapping("/delet")
+    @PostMapping("/delete")
     public ModelAndView deleteNote(@RequestParam("id") long id){
         noteService.deleteById(id);
         ModelAndView result = new ModelAndView("redirect:/note/list");
