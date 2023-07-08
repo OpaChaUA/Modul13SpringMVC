@@ -30,18 +30,19 @@ public class NoteController {
 
     }
     @GetMapping("/edit")
-    public ModelAndView editPage (@RequestParam("id") long id){
-
+    public ModelAndView editPage(@RequestParam("id") long id) {
         ModelAndView result = new ModelAndView("edit");
-        result.addObject("notes", noteService.getById(id));
+        result.addObject("note", noteService.getById(id));
         return result;
     }
 
+
     @PostMapping("/edit")
-    public ModelAndView editNote(@RequestParam("note") Note updateNote) {
+    public ModelAndView editNote(@ModelAttribute("note") Note updateNote) {
         noteService.update(updateNote);
         ModelAndView result = new ModelAndView("redirect:/note/list");
         result.addObject("notes", noteService.allNote());
         return result;
     }
+
 }
